@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+double add(double x, double y) { return x + y; }
+double sub(double x, double y) { return x - y; }
+double mul(double x, double y) { return x * y; }
+double divi(double x, double y) { return (y != 0) ? x / y : 0.0; }
+
+int main() {
+    double a, b;
+    int ch;
+    double (*calc[])(double, double) = {add, sub, mul, divi};
+
+    printf("Enter first number: ");
+    scanf("%lf", &a);
+    printf("Enter second number: ");
+    scanf("%lf", &b);
+
+    do {
+        printf("\n--- Menu ---\n");
+        printf("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n0. Exit\n");
+        printf("Choose: ");
+        scanf("%d", &ch);
+
+        if (ch >= 1 && ch <= 4) {
+            printf("Result = %.2lf\n", calc[ch - 1](a, b));
+        }
+    } while (ch != 0);
+
+    return 0;
+}
